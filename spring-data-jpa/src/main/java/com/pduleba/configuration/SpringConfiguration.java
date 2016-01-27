@@ -17,19 +17,23 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.SharedEntityManagerBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.pduleba.jpa.model.CarModel;
-import com.pduleba.spring.data.ApplicationInitializationPackageMarker;
+import com.pduleba.spring.data.SpringMarker;
+import com.pduleba.spring.data.dao.SpringDataJpaMarker;
 
 @Configuration
-@ComponentScan(basePackageClasses=ApplicationInitializationPackageMarker.class)
+@ComponentScan(basePackageClasses=SpringMarker.class)
+@EnableJpaRepositories(basePackageClasses = SpringDataJpaMarker.class)
 @PropertySource("classpath:/config/application.properties")
 @EnableTransactionManagement
 public class SpringConfiguration implements ApplicationPropertiesConfiguration {
@@ -83,7 +87,7 @@ public class SpringConfiguration implements ApplicationPropertiesConfiguration {
 	}
 
 	// TransactionManager by EntityManagerFactory 
-	@Bean JpaTransactionManager jpaTransactionManager(EntityManagerFactory emf, DataSource dataSource) {
+	@Bean PlatformTransactionManager transactionManager(EntityManagerFactory emf, DataSource dataSource) {
 		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
 		jpaTransactionManager.setEntityManagerFactory(emf);
 		jpaTransactionManager.setDataSource(dataSource);

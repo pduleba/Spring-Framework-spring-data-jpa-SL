@@ -34,7 +34,7 @@ public class DBControllerImpl implements DBController {
 			LOG.info("------------");
 			Long ownerId = create();
 			LOG.info("------------");
-			OwnerModel persisted = read(ownerId);
+			OwnerModel persisted = getById(ownerId);
 			LOG.info("------------");
 			update(persisted, Thread.currentThread().getName());
 			LOG.info("------------");
@@ -44,7 +44,7 @@ public class DBControllerImpl implements DBController {
 	}
 	
 	private boolean databaseExists() {
-		return 0 != ownerService.getNumberOfOwners();
+		return 0L != ownerService.count();
 	}
 
 	private Long create() {
@@ -55,8 +55,8 @@ public class DBControllerImpl implements DBController {
 		return owners.get(0).getId();
 	}
 
-	private OwnerModel read(long ownerId) {
-		OwnerModel owner = ownerService.read(ownerId);
+	private OwnerModel getById(long ownerId) {
+		OwnerModel owner = ownerService.getById(ownerId);
 		utils.show(owner, Mode.READ);
 		
 		return owner;
@@ -71,7 +71,7 @@ public class DBControllerImpl implements DBController {
 	private void delete(OwnerModel owner) {
 		if (deleteEnabled) {
 			ownerService.delete(owner);
-			OwnerModel deleted = ownerService.read(owner.getId());
+			OwnerModel deleted = ownerService.getById(owner.getId());
 			utils.show(deleted, Mode.DELETE);
 		} else {
 			LOG.warn("Delete feature disabled!");

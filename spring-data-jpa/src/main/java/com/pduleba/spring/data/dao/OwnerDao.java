@@ -2,21 +2,21 @@ package com.pduleba.spring.data.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.pduleba.jpa.model.OwnerModel;
 
-public interface OwnerDao {
+@Repository
+@Transactional
+public interface OwnerDao extends JpaRepository<OwnerModel, Long>{
 
-	void create(OwnerModel owner);
-
-	void createAll(List<OwnerModel> owners);
-
-	OwnerModel read(long ownerId);
-
-	void update(OwnerModel owner);
+	OwnerModel getById(Long ownerId);
 
 	void delete(OwnerModel owner);
 
-	int getNumberOfOwners();
+	long count();
 
-	List<OwnerModel> queryForList(String firstName);
+	List<OwnerModel> getByFirstName(String firstName);
 }

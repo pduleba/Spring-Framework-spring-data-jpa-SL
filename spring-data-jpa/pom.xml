@@ -30,6 +30,7 @@
 		<hibernate.validator.version>5.2.2.Final</hibernate.validator.version>
 		<hibernate.version>5.0.7.Final</hibernate.version>
 		<javax.transaction-api.version>1.2</javax.transaction-api.version>
+		<spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
 		<!-- profile specific -->
 		<oracle.driver.version>11.2.0.4</oracle.driver.version>
 		<mysql.driver.version>5.1.38</mysql.driver.version>
@@ -266,6 +267,14 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
+
 
 		<!-- Java DI API - JSR-330 -->
 		<dependency>

@@ -10,14 +10,14 @@ public interface OwnerService {
 
 	void createAll(List<OwnerModel> owners);
 
-	OwnerModel read(long ownerId);
+	OwnerModel getById(long ownerId);
 
 	void update(OwnerModel owner);
 
 	void delete(OwnerModel owner);
 
-	int getNumberOfOwners();
+	long count();
 
-	List<OwnerModel> queryForList(String carName);
+	List<OwnerModel> getByFirstName(String carName);
 
 }

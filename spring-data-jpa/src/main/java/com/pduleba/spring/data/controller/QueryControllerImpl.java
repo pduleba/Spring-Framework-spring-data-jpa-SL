@@ -23,7 +23,7 @@ public @Data class QueryControllerImpl implements QueryController {
 	@Override
 	public void executeQueries() {
 		LOG.info("########### Execute Query by Example ###########");
-		utils.show(ownerSerivce.queryForList("Darek"));
+		utils.show(ownerSerivce.getByFirstName("Darek"));
 	}
 
 }

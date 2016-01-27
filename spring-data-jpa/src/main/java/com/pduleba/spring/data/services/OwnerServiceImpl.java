@@ -16,22 +16,22 @@ public class OwnerServiceImpl implements OwnerService {
 
 	@Override
 	public void create(OwnerModel owner) {
-		ownerDao.create(owner);
+		ownerDao.saveAndFlush(owner);
 	}
 	
 	@Override
 	public void createAll(List<OwnerModel> owners) {
-		ownerDao.createAll(owners);
+		ownerDao.save(owners);
 	}
 
 	@Override
-	public OwnerModel read(long ownerId) {
-		return ownerDao.read(ownerId);
+	public OwnerModel getById(long ownerId) {
+		return ownerDao.getById(ownerId);
 	}
 
 	@Override
 	public void update(OwnerModel owner) {
-		ownerDao.update(owner);
+		ownerDao.saveAndFlush(owner);
 	}
 
 	@Override
@@ -40,8 +40,8 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public int getNumberOfOwners() {
-		return ownerDao.getNumberOfOwners();
+	public long count() {
+		return ownerDao.count();
 	}
 
 	// ------------------------------------------------
@@ -49,7 +49,7 @@ public class OwnerServiceImpl implements OwnerService {
 	// ------------------------------------------------
 
 	@Override
-	public List<OwnerModel> queryForList(String firstName) {
-		return ownerDao.queryForList(firstName);
+	public List<OwnerModel> getByFirstName(String firstName) {
+		return ownerDao.getByFirstName(firstName);
 	}
 }

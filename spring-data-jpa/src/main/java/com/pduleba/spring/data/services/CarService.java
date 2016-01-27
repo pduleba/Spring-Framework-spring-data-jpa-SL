@@ -6,7 +6,7 @@ public interface CarService {
 
 	void create(CarModel car);
 
-	CarModel read(long carId);
+	CarModel getById(long carId);
 
 	void update(CarModel car);
 
