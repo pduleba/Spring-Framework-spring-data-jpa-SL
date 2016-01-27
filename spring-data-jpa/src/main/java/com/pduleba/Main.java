@@ -1,4 +1,4 @@
-package com.pduleba.jpa;
+package com.pduleba;
 
 import java.io.IOException;
 import java.security.InvalidParameterException;
