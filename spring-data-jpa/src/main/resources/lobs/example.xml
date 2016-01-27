@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<fonts>
+  <!-- Simple commnent example with xml file example with national characters -->
+  <font>
+    <name>Michał</name>
+    <filename>Ślimańczuk</filename>
+    <age>10</age>
+    <logo>〷◠‿◠〷</logo>
+  </font>
+  <font>
+    <name>Łukasz</name>
+    <filename>Frąckowiakość</filename>
+    <age>14</age>
+    <logo>▔\▁〷●‿●〷▁/▔</logo>
+  </font>
+  <font>
+    <name>Józef</name>
+    <filename>Zięba</filename>
+    <age>18</age>
+    <logo>∫₂⁴Ѧᾴặầᾷậ</logo>
+  </font>
+</fonts>
