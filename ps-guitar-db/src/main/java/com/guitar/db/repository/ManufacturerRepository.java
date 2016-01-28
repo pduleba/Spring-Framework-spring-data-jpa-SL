@@ -15,37 +15,34 @@ public class ManufacturerRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	private ManufacturerJpaRepository manufacturerJpaRepository;
+	
 	/**
 	 * Create
 	 */
 	public Manufacturer create(Manufacturer man) {
-		entityManager.persist(man);
-		entityManager.flush();
-		return man;
+		return manufacturerJpaRepository.saveAndFlush(man);
 	}
 
 	/**
 	 * Update
 	 */
 	public Manufacturer update(Manufacturer man) {
-		man = entityManager.merge(man);
-		entityManager.flush();
-		return man;
+		return manufacturerJpaRepository.saveAndFlush(man);
 	}
 
 	/**
 	 * Delete
 	 */
 	public void delete(Manufacturer man) {
-		entityManager.remove(man);
-		entityManager.flush();
+		manufacturerJpaRepository.delete(man);
 	}
 
 	/**
 	 * Find
 	 */
 	public Manufacturer find(Long id) {
-		return entityManager.find(Manufacturer.class, id);
+		return manufacturerJpaRepository.findOne(id);
 	}
 
 	/**

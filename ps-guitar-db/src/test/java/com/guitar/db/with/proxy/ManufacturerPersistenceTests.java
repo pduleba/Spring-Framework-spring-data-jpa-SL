@@ -1,4 +1,4 @@
-package com.guitar.db;
+package com.guitar.db.with.proxy;
 
 import static org.junit.Assert.assertEquals;
 
