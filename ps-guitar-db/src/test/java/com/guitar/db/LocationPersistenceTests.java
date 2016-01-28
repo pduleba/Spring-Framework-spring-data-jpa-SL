@@ -37,7 +37,7 @@ public class LocationPersistenceTests {
 		
 		notNull(findAll);
 	}
-	
+
 	@Test
 	@Transactional
 	public void testSaveAndGetAndDelete() throws Exception {
