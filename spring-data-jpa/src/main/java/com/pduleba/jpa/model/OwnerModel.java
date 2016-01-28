@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,13 +29,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public @Data class OwnerModel {
 
-	public OwnerModel(String firstName, String lastName, Integer age, OwnerType type) {
+	public OwnerModel(String firstName, String lastName, Integer age, Boolean active, OwnerType type) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.age = age;
+		this.active = active;
 		this.type = type;
 		this.since = new Date(System.currentTimeMillis());
-		this.age = age;
 	}
 
 	@Id
@@ -57,6 +60,10 @@ public @Data class OwnerModel {
 	
 	@Column(name = "AGE")
 	private Integer age;
+	
+	@Column(name = "ACTIVE")
+	@Type(type="yes_no")
+	private Boolean active;
 	
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = CarModel.class)
 	private List<CarModel> cars = new LinkedList<>();

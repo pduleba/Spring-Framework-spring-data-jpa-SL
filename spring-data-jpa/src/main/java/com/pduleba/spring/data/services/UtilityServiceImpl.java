@@ -85,12 +85,14 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		OwnerModel owner;
 		CarModel car;
 		Integer age, wheels;
+		Boolean active;
 		int userIndex = 0;
 		String carName;
 		
 		for (String[] person : persons) {
 			age = Integer.valueOf((int)(Math.random() * 99));
-			owner = new OwnerModel(person[0], person[1], age, getRandomType());
+			active = Math.random() > 0.5 ? Boolean.FALSE : Boolean.TRUE;
+			owner = new OwnerModel(person[0], person[1], age, active, getRandomType());
 			int numberOfCars = Integer.valueOf((int)(Math.random() * 6));
 			userIndex++;
 			
