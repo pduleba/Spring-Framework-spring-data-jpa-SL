@@ -1,4 +1,4 @@
-package com.guitar.db;
+package com.guitar.db.co.operation.with.spring.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.util.Assert.notNull;
