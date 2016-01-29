@@ -16,21 +16,6 @@ public interface OwnerService {
 
 	void delete(OwnerModel owner);
 
-	long count();
-
-	List<OwnerModel> getByFirstName(String carName);
-
-	List<OwnerModel> getByFirstNameLikeOrLastNameLike(String firstName, String lastName);
-	
-	List<OwnerModel> getByFirstNameIsAndLastNameEqualsAndAgeNot(String firstName, String lastName, Integer age);
-	
 	List<OwnerModel> getByFirstNameNotLike(String firstName);
-
-	List<OwnerModel> getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(String firstNameStartingWith,
-			String firstNameEndingWith, String firstNameContaining);
-
-	List<OwnerModel> getByAgeLessThanEqualAndAgeGreaterThan(int ageLessThanEqual, int ageGreaterThan);
-
-	List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l);
 
 }

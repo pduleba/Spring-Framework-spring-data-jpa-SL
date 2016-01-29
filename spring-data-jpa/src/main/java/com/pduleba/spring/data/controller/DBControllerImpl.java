@@ -23,28 +23,20 @@ public class DBControllerImpl implements DBController {
 	@Autowired
 	private UtilityService utils;
 	
-	@Value(value="${application.remove.enabled}")
+	@Value(value="${application.delete.enabled}")
 	private boolean deleteEnabled = true;
 
 	@Override
 	public void createDB() {
-		if (databaseExists()) {
-			LOG.info("Database already exists");
-		} else {
-			LOG.info("------------");
-			Long ownerId = create();
-			LOG.info("------------");
-			OwnerModel persisted = getById(ownerId);
-			LOG.info("------------");
-			update(persisted, Thread.currentThread().getName());
-			LOG.info("------------");
-			delete(persisted);
-			LOG.info("------------");
-		}
-	}
-	
-	private boolean databaseExists() {
-		return 0L != ownerService.count();
+		LOG.info("------------");
+		Long ownerId = create();
+		LOG.info("------------");
+		OwnerModel persisted = read(ownerId);
+		LOG.info("------------");
+		update(persisted, Thread.currentThread().getName());
+		LOG.info("------------");
+		delete(persisted);
+		LOG.info("------------");
 	}
 
 	private Long create() {
@@ -55,7 +47,7 @@ public class DBControllerImpl implements DBController {
 		return owners.get(0).getId();
 	}
 
-	private OwnerModel getById(long ownerId) {
+	private OwnerModel read(long ownerId) {
 		OwnerModel owner = ownerService.getById(ownerId);
 		utils.show(owner, Mode.READ);
 		

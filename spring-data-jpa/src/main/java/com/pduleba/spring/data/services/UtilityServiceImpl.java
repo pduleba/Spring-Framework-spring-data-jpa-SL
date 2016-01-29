@@ -11,11 +11,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialClob;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.hibernate.Hibernate;
+import org.hibernate.engine.jdbc.NonContextualLobCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +38,8 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 	private Environment env;
 	
 	private Random generator = new Random();
+	
+	private NonContextualLobCreator creator = NonContextualLobCreator.INSTANCE;
 
 	@Override
 	public void show(Object entity) {
@@ -121,7 +121,8 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 			
 			try {
 				try (InputStream inputStream = imageFile.getInputStream()) {
-					resource = new SerialBlob(StreamUtils.copyToByteArray(inputStream));
+//					resource = new SerialBlob(StreamUtils.copyToByteArray(inputStream));
+					resource = creator.createBlob(StreamUtils.copyToByteArray(inputStream));
 				}
 			} catch (Exception e) {
 				LOG.error(MessageFormat.format("Unable to load resource from {0}", classpathLocation), e);
@@ -140,7 +141,8 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 			
 			try {
 				try (InputStream inputStream = imageFile.getInputStream()) {
-					resource = new SerialClob(StreamUtils.copyToString(inputStream, Charset.forName("UTF-8")).toCharArray());
+//					resource = new SerialClob(StreamUtils.copyToString(inputStream, Charset.forName("UTF-8")).toCharArray());
+					resource = creator.createClob(StreamUtils.copyToString(inputStream, Charset.forName("UTF-8")));
 				}
 			} catch (Exception e) {
 				LOG.error(MessageFormat.format("Unable to load resource from from {0}", classpathLocation), e);

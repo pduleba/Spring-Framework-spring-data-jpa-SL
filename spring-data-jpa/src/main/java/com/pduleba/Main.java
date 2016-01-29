@@ -5,6 +5,7 @@ import java.security.InvalidParameterException;
 import java.text.MessageFormat;
 
 import org.apache.log4j.PropertyConfigurator;
+import org.hibernate.engine.jdbc.NonContextualLobCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -28,6 +29,7 @@ public class Main {
 	}
 
 	private void configureLogger() {
+		NonContextualLobCreator a;
 		final String LOG4J_CLASSPATH_LOCATION = "/config/log4j.properties";
 		ClassPathResource log4jResource = new ClassPathResource(LOG4J_CLASSPATH_LOCATION);
 		try {

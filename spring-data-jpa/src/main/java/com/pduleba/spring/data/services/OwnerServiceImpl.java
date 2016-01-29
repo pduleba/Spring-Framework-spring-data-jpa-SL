@@ -40,48 +40,7 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public long count() {
-		return ownerDao.count();
-	}
-
-	// ------------------------------------------------
-	//					Query methods
-	// ------------------------------------------------
-
-	@Override
-	public List<OwnerModel> getByFirstName(String firstName) {
-		return ownerDao.getByFirstName(firstName);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameLikeOrLastNameLike(String firstName, String lastName) {
-		return ownerDao.getByFirstNameLikeOrLastNameLike(firstName, lastName);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameIsAndLastNameEqualsAndAgeNot(String firstName, String lastName, Integer age) {
-		return ownerDao.getByFirstNameIsAndLastNameEqualsAndAgeNot(firstName, lastName, age);
-	}
-	
-	@Override
 	public List<OwnerModel> getByFirstNameNotLike(String firstName) {
 		return ownerDao.getByFirstNameNotLike(firstName);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(
-			String firstNameStartingWith, String firstNameEndingWith, String firstNameContaining) {
-		return ownerDao.getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(firstNameStartingWith,
-				firstNameEndingWith, firstNameContaining);
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeLessThanEqualAndAgeGreaterThan(int ageLessThanEqual, int ageGreaterThan) {
-		return ownerDao.getByAgeLessThanEqualAndAgeGreaterThan(ageLessThanEqual, ageGreaterThan);
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l) {
-		return ownerDao.getByAgeBeforeAndAgeAfterAndAgeBetween(i, j, k, l);
 	}
 }
