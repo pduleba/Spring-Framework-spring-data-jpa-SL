@@ -43,6 +43,9 @@ public @Data class QueryControllerImpl implements QueryController {
 
 		LOG.info("########### WHERE Age < ? AND Age > ? AND AGE BETWEEN ? AND ? ###########");
 		utils.show(ownerSerivce.getByAgeBeforeAndAgeAfterAndAgeBetween(82, 80, 80, 82));
+		
+		LOG.info("########### WHERE Age < ? AND Age > ? AND AGE BETWEEN ? AND ? ###########");
+		utils.show(ownerSerivce.getByActiveTrue());
 	}
 
 }

@@ -84,4 +84,9 @@ public class OwnerServiceImpl implements OwnerService {
 	public List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l) {
 		return ownerDao.getByAgeBeforeAndAgeAfterAndAgeBetween(i, j, k, l);
 	}
+	
+	@Override
+	public List<OwnerModel> getByActiveTrue() {
+		return ownerDao.getByActiveTrue();
+	}
 }

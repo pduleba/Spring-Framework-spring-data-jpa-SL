@@ -33,4 +33,6 @@ public interface OwnerService {
 
 	List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l);
 
+	List<OwnerModel> getByActiveTrue();
+
 }

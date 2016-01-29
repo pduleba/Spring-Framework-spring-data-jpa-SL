@@ -32,5 +32,6 @@ public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
 	List<OwnerModel> getByAgeLessThanEqualAndAgeGreaterThan(int ageLessThanEqual, int ageGreaterThan);
 
 	List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l);
-
+	
+	List<OwnerModel> getByActiveTrue();
 }
