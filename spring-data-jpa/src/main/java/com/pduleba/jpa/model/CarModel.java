@@ -27,7 +27,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "T_CAR")
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString(exclude = "owner")
 public @Data class CarModel {
 	
 	public CarModel(String name, Integer wheelsNumber, Clob spec, Blob image) {
