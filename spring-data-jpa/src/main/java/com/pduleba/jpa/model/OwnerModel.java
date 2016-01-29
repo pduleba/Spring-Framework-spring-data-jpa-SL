@@ -23,10 +23,12 @@ import org.hibernate.annotations.Type;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "T_OWNER")
 @NoArgsConstructor
+@ToString(exclude = "cars")
 public @Data class OwnerModel {
 
 	public OwnerModel(String firstName, String lastName, Integer age, Boolean active, OwnerType type) {
@@ -71,10 +73,5 @@ public @Data class OwnerModel {
 	public void addCar(CarModel car) {
 		cars.add(car);
 		car.setOwner(this);
-	}
-
-	@Override
-	public String toString() {
-		return "OwnerModel [id=" + id + "]";
 	}
 }
