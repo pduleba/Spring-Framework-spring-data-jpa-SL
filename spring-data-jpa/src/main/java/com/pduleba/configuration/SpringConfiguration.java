@@ -18,7 +18,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.SharedEntityManagerBean;
@@ -101,8 +100,6 @@ public class SpringConfiguration implements ApplicationPropertiesConfiguration {
 		
 		if (resource.isReadable()) {
 			prop.load(resource.getInputStream());
-			// TRICK !!!
-	        prop.put("hibernate.current_session_context_class", SpringSessionContext.class.getName()); 
 		} else {
 			throw new IllegalStateException(MessageFormat.format("{0} not readable", resource.getFilename()));
 		}
