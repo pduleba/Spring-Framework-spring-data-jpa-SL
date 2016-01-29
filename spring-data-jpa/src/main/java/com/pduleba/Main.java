@@ -48,12 +48,6 @@ public class Main {
 		}
 	}
 
-	private void executeCarLogic() {
-		LOG.info("##### Starting... #####");
-		dbController.processCar();
-		LOG.info("##### Starting... Complete #####");
-	}
-
 	private void executeLogic() {
 		dbController.createDB();
 		

@@ -4,6 +4,4 @@ public interface DBController {
 
 	void createDB();
 
-	void processCar();
-
 }

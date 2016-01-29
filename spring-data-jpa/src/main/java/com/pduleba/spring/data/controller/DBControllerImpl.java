@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.pduleba.jpa.model.CarModel;
 import com.pduleba.jpa.model.OwnerModel;
 import com.pduleba.spring.data.services.CarService;
 import com.pduleba.spring.data.services.OwnerService;
@@ -29,25 +28,12 @@ public class DBControllerImpl implements DBController {
 	
 	@Value(value="${application.remove.enabled}")
 	private boolean deleteEnabled = true;
-	
-	@Override
-	public void processCar() {
-		CarModel car = utils.getCar();
-		
-		carService.create(car);
-		car = carService.getById(car.getId());
-		car.setName(Thread.currentThread().getName());
-		carService.update(car);
-		
-		LOG.info("The end!");
-	}
-	
 
 	@Override
 	public void createDB() {
-//		if (databaseExists()) {
-//			LOG.info("Database already exists");
-//		} else {
+		if (databaseExists()) {
+			LOG.info("Database already exists");
+		} else {
 			LOG.info("------------");
 			Long ownerId = create();
 			LOG.info("------------");
@@ -57,7 +43,7 @@ public class DBControllerImpl implements DBController {
 			LOG.info("------------");
 			delete(persisted);
 			LOG.info("------------");
-//		}
+		}
 	}
 	
 	private boolean databaseExists() {
