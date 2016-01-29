@@ -72,4 +72,9 @@ public @Data class OwnerModel {
 		cars.add(car);
 		car.setOwner(this);
 	}
+
+	@Override
+	public String toString() {
+		return "OwnerModel [id=" + id + "]";
+	}
 }

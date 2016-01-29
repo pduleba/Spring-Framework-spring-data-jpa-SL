@@ -14,17 +14,17 @@ public class CarServiceImpl implements CarService {
 	
 	@Override
 	public void create(CarModel car) {
-		carDao.saveAndFlush(car);
+		carDao.create(car);
 	}
 
 	@Override
 	public CarModel getById(long carId) {
-		return carDao.getById(carId);
+		return carDao.read(carId);
 	}
 
 	@Override
 	public void update(CarModel car) {
-		carDao.saveAndFlush(car);
+		carDao.update(car);
 	}
 
 	@Override

@@ -76,18 +76,25 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 	}
 	
 	@Override
+	public CarModel getCar() {
+		Clob spec = getClob();
+		Blob image = getBlob();
+		
+		return new CarModel(getCarName(0, 0), getWheelsNumber(), spec, image);
+	}
+	
+	@Override
 	public List<OwnerModel> getData() {
-		Clob spec = getClob(env.getProperty(KEY_SPEC_FILE_CLASSPATH_LOCATION));
-		Blob image = getBlob(env.getProperty(KEY_IMAGE_FILE_CLASSPATH_LOCATION));
+		Clob spec = getClob();
+		Blob image = getBlob();
 		
 		List<OwnerModel> owners = new LinkedList<>();
 		String[][] persons = {{"Adam","A"}, {"Jola","J"}, {"Zbyszek","Z"}, {"Filip","F"}, {"Darek","D"}, {"Bartek","B"}};
 		OwnerModel owner;
 		CarModel car;
-		Integer age, wheels;
+		Integer age;
 		Boolean active;
 		int userIndex = 0;
-		String carName;
 		
 		for (String[] person : persons) {
 			age = Integer.valueOf((int)(Math.random() * 99));
@@ -97,9 +104,7 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 			userIndex++;
 			
 			for (int i = 1; i <= numberOfCars; i++) {
-				wheels = Integer.valueOf((int)(Math.random() * 5));
-				carName = "Audi-" + userIndex + "-"+ i;
-				car = new CarModel(carName, wheels, spec, image);
+				car = new CarModel(getCarName(userIndex, i), getWheelsNumber(), spec, image);
 				owner.addCar(car);
 			}
 			
@@ -109,11 +114,20 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		return owners;
 	}
 
+	private Integer getWheelsNumber() {
+		return Integer.valueOf((int)(Math.random() * 5));
+	}
+
+	private String getCarName(int userIndex, int i) {
+		return "Audi-" + userIndex + "-"+ i;
+	}
+
 	private OwnerType getRandomType() {
 		return OWNER_TYPES[generator.nextInt(OWNER_TYPES.length)];
 	}
 
-	private Blob getBlob(String classpathLocation) {
+	private Blob getBlob() {
+		String classpathLocation = env.getProperty(KEY_IMAGE_FILE_CLASSPATH_LOCATION);
 		ClassPathResource imageFile = new ClassPathResource(classpathLocation);
 		
 		Blob resource = null;
@@ -132,7 +146,8 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		return resource;
 	}
 	
-	private Clob getClob(String classpathLocation) {
+	private Clob getClob() {
+		String classpathLocation = env.getProperty(KEY_SPEC_FILE_CLASSPATH_LOCATION);
 		ClassPathResource imageFile = new ClassPathResource(classpathLocation);
 		
 		Clob resource = null;

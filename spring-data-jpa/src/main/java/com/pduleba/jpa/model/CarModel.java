@@ -22,13 +22,12 @@ import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Table(name = "T_CAR")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "owner")
+//@ToString(exclude = "owner")
 public @Data class CarModel {
 	
 	public CarModel(String name, Integer wheelsNumber, Clob spec, Blob image) {
@@ -66,4 +65,10 @@ public @Data class CarModel {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = OwnerModel.class)
 	@JoinColumn(name = "ID_OWNER")
 	private OwnerModel owner;
+
+	@Override
+	public String toString() {
+		return "CarModel [id=" + id + "]";
+	}
+	
 }

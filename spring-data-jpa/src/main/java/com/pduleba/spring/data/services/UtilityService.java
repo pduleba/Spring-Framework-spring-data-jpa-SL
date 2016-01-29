@@ -3,6 +3,7 @@ package com.pduleba.spring.data.services;
 import java.util.Collection;
 import java.util.List;
 
+import com.pduleba.jpa.model.CarModel;
 import com.pduleba.jpa.model.OwnerModel;
 
 public interface UtilityService {
@@ -23,4 +24,6 @@ public interface UtilityService {
 	void show(Collection<?> entities, Mode mode);
 
 	void show(Collection<?> entities);
+
+	CarModel getCar();
 }

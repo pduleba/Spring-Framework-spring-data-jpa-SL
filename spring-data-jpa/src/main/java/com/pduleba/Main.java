@@ -44,11 +44,21 @@ public class Main {
 			dbController = ctx.getBean(DBController.class);
 			queryController = ctx.getBean(QueryController.class);
 
-			dbController.createDB();
-			
-			LOG.info("##### Starting... #####");
-			queryController.executeQueries();
-			LOG.info("##### Starting... Complete #####");
+			executeLogic();
 		}
+	}
+
+	private void executeCarLogic() {
+		LOG.info("##### Starting... #####");
+		dbController.processCar();
+		LOG.info("##### Starting... Complete #####");
+	}
+
+	private void executeLogic() {
+		dbController.createDB();
+		
+		LOG.info("##### Starting... #####");
+		queryController.executeQueries();
+		LOG.info("##### Starting... Complete #####");
 	}
 }
