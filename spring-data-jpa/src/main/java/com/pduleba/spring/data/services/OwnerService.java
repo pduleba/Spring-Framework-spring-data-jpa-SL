@@ -35,4 +35,10 @@ public interface OwnerService {
 
 	List<OwnerModel> getByActiveTrue();
 
+	List<OwnerModel> getByAgeIsNotNullOrActiveIsNull();
+
+	List<OwnerModel> getByAgeInAndActiveNotIn(List<Integer> asList, List<Boolean> asList2);
+
+	List<OwnerModel> getByCarsNameIn(List<String> in);
+
 }

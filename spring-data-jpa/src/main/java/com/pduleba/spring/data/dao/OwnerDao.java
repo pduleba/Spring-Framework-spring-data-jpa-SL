@@ -34,4 +34,11 @@ public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
 	List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l);
 	
 	List<OwnerModel> getByActiveTrue();
+	
+	List<OwnerModel> getByAgeIsNotNullOrActiveIsNull();
+	
+	List<OwnerModel> getByAgeInAndActiveNotIn(List<Integer> in, List<Boolean> notIn);
+	
+	List<OwnerModel> getByCarsNameIn(List<String> in);
+
 }

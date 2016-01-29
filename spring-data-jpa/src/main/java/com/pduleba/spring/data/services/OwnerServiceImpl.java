@@ -89,4 +89,19 @@ public class OwnerServiceImpl implements OwnerService {
 	public List<OwnerModel> getByActiveTrue() {
 		return ownerDao.getByActiveTrue();
 	}
+	
+	@Override
+	public List<OwnerModel> getByAgeIsNotNullOrActiveIsNull() {
+		return ownerDao.getByAgeIsNotNullOrActiveIsNull();
+	}
+	
+	@Override
+	public List<OwnerModel> getByAgeInAndActiveNotIn(List<Integer> in, List<Boolean> notIn) {
+		return ownerDao.getByAgeInAndActiveNotIn(in, notIn);
+	}
+	
+	@Override
+	public List<OwnerModel> getByCarsNameIn(List<String> in) {
+		return ownerDao.getByCarsNameIn(in);
+	}
 }
