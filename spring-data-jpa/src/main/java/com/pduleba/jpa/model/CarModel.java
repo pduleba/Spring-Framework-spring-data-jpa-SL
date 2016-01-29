@@ -1,7 +1,5 @@
 package com.pduleba.jpa.model;
 
-import java.sql.Blob;
-import java.sql.Clob;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -29,7 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public @Data class CarModel {
 	
-	public CarModel(String name, Integer wheelsNumber, Clob spec, Blob image) {
+	public CarModel(String name, Integer wheelsNumber, String spec, byte[] image) {
 		super();
 		this.name = name;
 		this.wheelsNumber = wheelsNumber;
@@ -55,11 +53,11 @@ public @Data class CarModel {
 	
 	@Lob
 	@Column(name = "SPEC")
-	private Clob spec;
+	private String spec;
 	
 	@Lob
 	@Column(name = "IMAGE")
-	private Blob image;
+	private byte[] image;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = OwnerModel.class)
 	@JoinColumn(name = "ID_OWNER")

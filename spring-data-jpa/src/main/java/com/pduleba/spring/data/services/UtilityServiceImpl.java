@@ -2,17 +2,12 @@ package com.pduleba.spring.data.services;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.sql.Blob;
-import java.sql.Clob;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialClob;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.hibernate.Hibernate;
@@ -77,16 +72,16 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 	
 	@Override
 	public CarModel getCar() {
-		Clob spec = getClob();
-		Blob image = getBlob();
+		String spec = getClob();
+		byte[] image = getBlob();
 		
 		return new CarModel(getCarName(0, 0), getWheelsNumber(), spec, image);
 	}
 	
 	@Override
 	public List<OwnerModel> getData() {
-		Clob spec = getClob();
-		Blob image = getBlob();
+		String spec = getClob();
+		byte[] image = getBlob();
 		
 		List<OwnerModel> owners = new LinkedList<>();
 		String[][] persons = {{"Adam","A"}, {"Jola","J"}, {"Zbyszek","Z"}, {"Filip","F"}, {"Darek","D"}, {"Bartek","B"}};
@@ -126,16 +121,16 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		return OWNER_TYPES[generator.nextInt(OWNER_TYPES.length)];
 	}
 
-	private Blob getBlob() {
+	private byte[] getBlob() {
 		String classpathLocation = env.getProperty(KEY_IMAGE_FILE_CLASSPATH_LOCATION);
 		ClassPathResource imageFile = new ClassPathResource(classpathLocation);
 		
-		Blob resource = null;
+		byte[] resource = null;
 		if (imageFile.exists()) {
 			
 			try {
 				try (InputStream inputStream = imageFile.getInputStream()) {
-					resource = new SerialBlob(StreamUtils.copyToByteArray(inputStream));
+					resource = StreamUtils.copyToByteArray(inputStream);
 				}
 			} catch (Exception e) {
 				LOG.error(MessageFormat.format("Unable to load resource from {0}", classpathLocation), e);
@@ -146,16 +141,16 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		return resource;
 	}
 	
-	private Clob getClob() {
+	private String getClob() {
 		String classpathLocation = env.getProperty(KEY_SPEC_FILE_CLASSPATH_LOCATION);
 		ClassPathResource imageFile = new ClassPathResource(classpathLocation);
 		
-		Clob resource = null;
+		String resource = null;
 		if (imageFile.exists()) {
 			
 			try {
 				try (InputStream inputStream = imageFile.getInputStream()) {
-					resource = new SerialClob(StreamUtils.copyToString(inputStream, Charset.forName("UTF-8")).toCharArray());
+					resource = StreamUtils.copyToString(inputStream, Charset.forName("UTF-8"));
 				}
 			} catch (Exception e) {
 				LOG.error(MessageFormat.format("Unable to load resource from from {0}", classpathLocation), e);
