@@ -39,10 +39,10 @@ public @Data class QueryControllerImpl implements QueryController {
 		utils.show(ownerSerivce.getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining("ek", "ek", "ek"));
 
 		LOG.info("########### WHERE Age > ? AND Age <= ? ###########");
-		utils.show(ownerSerivce.getByAgeLessThanEqualAndAgeGreaterThan(88, 87));
+		utils.show(ownerSerivce.getByAgeLessThanEqualAndAgeGreaterThan(82, 80));
 
 		LOG.info("########### WHERE Age < ? AND Age > ? AND AGE BETWEEN ? AND ? ###########");
-		utils.show(ownerSerivce.getByAgeBeforeAndAgeAfterAndAgeBetween(89, 87, 87, 89));
+		utils.show(ownerSerivce.getByAgeBeforeAndAgeAfterAndAgeBetween(82, 80, 80, 82));
 	}
 
 }
