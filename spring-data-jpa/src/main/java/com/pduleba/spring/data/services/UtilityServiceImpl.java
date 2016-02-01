@@ -3,7 +3,6 @@ package com.pduleba.spring.data.services;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -53,12 +52,12 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 	}
 
 	@Override
-	public void show(Collection<?> entities) {
+	public void show(List<OwnerModel> entities) {
 		show(entities, Mode.READ);
 	}
 	
 	@Override
-	public void show(Collection<?> entities, Mode mode) {
+	public void show(List<OwnerModel> entities, Mode mode) {
 		if (Objects.isNull(entities)) {
 			LOG.info("{} :: COLLECTION NOT FOUND", mode);
 		} else if (BooleanUtils.isFalse(Hibernate.isInitialized(entities))) {

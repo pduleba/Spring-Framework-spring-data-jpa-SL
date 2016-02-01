@@ -13,8 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,8 +31,8 @@ import lombok.ToString;
 @Table(name = "T_OWNER")
 @NoArgsConstructor
 @ToString(exclude = "cars")
-@NamedQueries(value = { 
-		@NamedQuery(name = "OwnerModel.findByFirstNameAndAgeNotZero", query = "SELECT o FROM OwnerModel o WHERE o.firstName = :firstName AND o.age <> 0") 
+@NamedNativeQueries(value = { 
+		@NamedNativeQuery(name = "OwnerModel.findByFirstNameAndAgeNotZero", query = "SELECT o.* FROM T_OWNER o WHERE o.FIRST_NAME = :firstName AND o.AGE <> 0") 
 })
 public @Data class OwnerModel {
 	

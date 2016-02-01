@@ -22,7 +22,7 @@ public @Data class QueryControllerImpl implements QueryController {
 
 	@Override
 	public void executeQueries() {
-		LOG.info("----------- Usage of @NamedQuery -----------");
+		LOG.info("----------- Usage of @NamedNativeQuery -----------");
 		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (name based parameters) ###########");
 		utils.show(ownerSerivce.findByFirstNameAndAgeNotZero("Jola"));
 	}

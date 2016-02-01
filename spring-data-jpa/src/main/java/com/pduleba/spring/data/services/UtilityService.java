@@ -1,6 +1,5 @@
 package com.pduleba.spring.data.services;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.pduleba.jpa.model.CarModel;
@@ -22,9 +21,9 @@ public interface UtilityService {
 
 	void show(Object entity);
 	
-	void show(Collection<?> entities, Mode mode);
+	void show(List<OwnerModel> entities, Mode mode);
 
-	void show(Collection<?> entities);
+	void show(List<OwnerModel> entities);
 
 	void show(int updateOrCount);
 

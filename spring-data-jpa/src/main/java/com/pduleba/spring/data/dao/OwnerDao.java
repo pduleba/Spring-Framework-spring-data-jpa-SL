@@ -19,7 +19,7 @@ public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
 
 	long count();
 
-	// Named Query
+	// Named Native Query
 	List<OwnerModel> findByFirstNameAndAgeNotZero(@Param(value = "firstName") String firstName);
 	
 }
