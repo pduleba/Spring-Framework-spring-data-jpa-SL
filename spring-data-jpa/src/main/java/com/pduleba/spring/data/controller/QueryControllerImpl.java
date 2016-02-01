@@ -27,7 +27,7 @@ public @Data class QueryControllerImpl implements QueryController {
 		utils.show(ownerSerivce.getByFirstName("Darek"));
 		
 		LOG.info("########### UPDATE ###########");
-		utils.show(ownerSerivce.updateLastNameByFirstName("DDD", "Darek"));
+		utils.show(ownerSerivce.updateLastNameByFirstName("DD", "Darek"));
 	}
 
 }
