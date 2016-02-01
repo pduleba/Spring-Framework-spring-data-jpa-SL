@@ -44,37 +44,8 @@ public class OwnerServiceImpl implements OwnerService {
 		return ownerDao.count();
 	}
 
-	// ------------------------------------------------
-	//					Query methods
-	// ------------------------------------------------
-
 	@Override
-	public List<OwnerModel> getByFirstName(String firstName) {
-		return ownerDao.getByFirstName(firstName);
-	}
-	
-	@Override
-	public List<OwnerModel> findByFirstNameLastNameAndAgeNameBased(String first, String lastLike, Integer ageNot) {
-		return ownerDao.findByFirstNameLastNameAndAgeNameBased(first, lastLike, ageNot);
-	}
-	
-	@Override
-	public List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot) {
-		return ownerDao.findByFirstNameLastNameAndAgeOrderBased(first, lastLike, ageNot);
-	}
-	
-	@Override
-	public List<OwnerModel> findByFirstNameLastNameAndAgeNativeSQL(String first, String lastLike, Integer ageNot) {
-		return ownerDao.findByFirstNameLastNameAndAgeNativeSQL(first, lastLike, ageNot);
-	}
-	
-	@Override
-	public int updateLastNameByFirstName(String lastName, String firstName) {
-		return ownerDao.updateLastNameByFirstName(lastName, firstName);
-	}
-
-	@Override
-	public int updateLastNameByFirstNameNativeSQL(String lastName, String firstName) {
-		return ownerDao.updateLastNameByFirstNameNativeSQL(lastName, firstName);
+	public List<OwnerModel> findByFirstNameAndAgeNotZero(String firstName) {
+		return ownerDao.findByFirstNameAndAgeNotZero(firstName);
 	}
 }

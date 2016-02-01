@@ -22,21 +22,9 @@ public @Data class QueryControllerImpl implements QueryController {
 
 	@Override
 	public void executeQueries() {
-		LOG.info("----------- Usage of @Query -----------");
+		LOG.info("----------- Usage of @NamedQuery -----------");
 		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (name based parameters) ###########");
-		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeNameBased("Jola", "J", Integer.valueOf(0)));
-
-		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (order based parameters) ###########");
-		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeOrderBased("Jola", "J", Integer.valueOf(0)));
-
-		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (native SQL) ###########");
-		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeNativeSQL("Jola", "J", Integer.valueOf(0)));
-
-		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (UPDATE) ###########");
-		utils.show(ownerSerivce.updateLastNameByFirstName("JJ", "Jola"));
-		
-		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (NATIVE SQL UPDATE) ###########");
-		utils.show(ownerSerivce.updateLastNameByFirstName("JJJ", "Jola"));
+		utils.show(ownerSerivce.findByFirstNameAndAgeNotZero("Jola"));
 	}
 
 }

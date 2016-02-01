@@ -18,15 +18,5 @@ public interface OwnerService {
 
 	long count();
 
-	List<OwnerModel> getByFirstName(String carName);
-
-	List<OwnerModel> findByFirstNameLastNameAndAgeNameBased(String first, String lastLike, Integer ageNot);
-
-	List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot);
-
-	List<OwnerModel> findByFirstNameLastNameAndAgeNativeSQL(String first, String lastLike, Integer ageNot);
-
-	int updateLastNameByFirstName(String lastName, String firstName);
-
-	int updateLastNameByFirstNameNativeSQL(String lastName, String firstName);
+	List<OwnerModel> findByFirstNameAndAgeNotZero(String firstName);
 }
