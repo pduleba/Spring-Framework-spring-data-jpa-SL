@@ -20,4 +20,6 @@ public interface OwnerService {
 
 	List<OwnerModel> getByFirstName(String carName);
 
+	int updateLastNameByFirstName(String lastName, String firstName);
+
 }

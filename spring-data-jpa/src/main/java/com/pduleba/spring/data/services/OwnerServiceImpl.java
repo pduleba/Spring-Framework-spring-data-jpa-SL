@@ -53,4 +53,9 @@ public class OwnerServiceImpl implements OwnerService {
 		return ownerDao.getByFirstName(firstName);
 	}
 	
+	@Override
+	public int updateLastNameByFirstName(String lastName, String firstName) {
+		return ownerDao.updateLastNameByFirstName(lastName, firstName);
+	}
+	
 }

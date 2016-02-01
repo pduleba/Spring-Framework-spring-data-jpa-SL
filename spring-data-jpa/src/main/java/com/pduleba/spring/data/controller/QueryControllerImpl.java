@@ -22,8 +22,12 @@ public @Data class QueryControllerImpl implements QueryController {
 
 	@Override
 	public void executeQueries() {
-		LOG.info("----------- Execute Query DSL -----------");
-		LOG.info("########### WHERE FirstName = ? ###########");
-		utils.show(ownerSerivce.getByFirstName("Darek"));	}
+		LOG.info("----------- Execute Auditing -----------");
+		LOG.info("########### SELECT ###########");
+		utils.show(ownerSerivce.getByFirstName("Darek"));
+		
+		LOG.info("########### UPDATE ###########");
+		utils.show(ownerSerivce.updateLastNameByFirstName("DD", "Darek"));
+	}
 
 }
