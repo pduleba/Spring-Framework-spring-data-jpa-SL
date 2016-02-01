@@ -20,6 +20,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -59,6 +63,24 @@ public @Data class OwnerModel {
 	@Column(name = "SINCE")
 	@Temporal(TemporalType.TIME)
 	private Date since;
+	
+	@CreatedDate
+	@Column(name = "CREATED_DATE")
+	@Temporal(TemporalType.TIME)
+	private Date createdDate;
+	
+	@LastModifiedDate
+	@Column(name = "MODIFIED_DATE")
+	@Temporal(TemporalType.TIME)
+	private Date modifiedDate;
+
+	@CreatedBy
+	@Column(name = "CREATED_BY")
+	private String createdBy;
+
+	@LastModifiedBy
+	@Column(name = "MODIFIED_BY")
+	private String modifiedBy;
 	
 	@Column(name = "AGE")
 	private Integer age;

@@ -17,6 +17,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -30,12 +32,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.pduleba.jpa.model.CarModel;
 import com.pduleba.spring.data.SpringMarker;
 import com.pduleba.spring.data.dao.SpringDataJpaMarker;
+import com.pduleba.spring.security.SecurityAuditorAware;
 
 @Configuration
 @ComponentScan(basePackageClasses=SpringMarker.class)
 @EnableJpaRepositories(basePackageClasses = SpringDataJpaMarker.class)
 @PropertySource("classpath:/config/application.properties")
 @EnableTransactionManagement
+@EnableJpaAuditing
 public class SpringConfiguration implements ApplicationPropertiesConfiguration {
 	
 	@Autowired
@@ -93,6 +97,10 @@ public class SpringConfiguration implements ApplicationPropertiesConfiguration {
 		jpaTransactionManager.setDataSource(dataSource);
 		
 		return jpaTransactionManager;
+	}
+	
+	@Bean public AuditorAware<String> auditorProvider() {
+		return new SecurityAuditorAware();
 	}
 	
 	private Properties getHibernateProperties() throws IOException {
