@@ -1,6 +1,5 @@
 package com.pduleba.configuration;
 
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -10,6 +9,6 @@ public class AuditingDateTimeProvider implements DateTimeProvider {
 	 
     @Override
     public Calendar getNow() {
-        return GregorianCalendar.from(ZonedDateTime.now());
+        return GregorianCalendar.getInstance();
     }
 }
