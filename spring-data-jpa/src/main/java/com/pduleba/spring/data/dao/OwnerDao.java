@@ -1,7 +1,8 @@
 package com.pduleba.spring.data.dao;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +19,8 @@ public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
 
 	long count();
 
-	List<OwnerModel> paging();
+	Page<OwnerModel> findByActiveTrue(Pageable page);
 
-	List<OwnerModel> sorting();
+	Iterable<OwnerModel> findByActiveTrue(Sort sort);
 	
 }

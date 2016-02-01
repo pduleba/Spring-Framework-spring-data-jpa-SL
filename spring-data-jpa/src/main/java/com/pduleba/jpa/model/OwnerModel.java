@@ -36,6 +36,8 @@ import lombok.ToString;
 })
 public @Data class OwnerModel {
 	
+	public static final String FIELD_FIRST_NAME = "firstName";
+
 	public OwnerModel(String firstName, String lastName, Integer age, Boolean active, OwnerType type) {
 		super();
 		this.firstName = firstName;

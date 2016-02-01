@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
@@ -53,6 +54,17 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 	}
 
 	@Override
+	public void show(Page<OwnerModel> page) {
+		Mode mode = Mode.READ;
+		if (Objects.isNull(page)) {
+			LOG.info("{} :: PAGE NOT FOUND", mode);
+		} else {
+			LOG.info("{} :: PAGE {} of {} ", mode, page.getNumber(), page.getTotalPages());
+			show(page.getContent());
+		}
+	}
+	
+	@Override
 	public void show(Collection<?> entities) {
 		show(entities, Mode.READ);
 	}
@@ -70,6 +82,16 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 		}
 	}
 
+	@Override
+	public void show(Iterable<?> iterable) {
+		Mode mode = Mode.READ;
+		if (Objects.isNull(iterable)) {
+			LOG.info("{} :: ITERABLE NOT FOUND", mode);
+		} else {
+			iterable.forEach((o) -> LOG.info("{} :: {}", mode, o));
+		}		
+	}
+	
 	@Override
 	public void show(int updateOrCount) {
 		LOG.info("{} :: {}", Mode.UPDATE_OR_COUNT, updateOrCount);
