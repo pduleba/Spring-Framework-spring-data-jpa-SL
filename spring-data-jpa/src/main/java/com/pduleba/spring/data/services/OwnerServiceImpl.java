@@ -45,7 +45,12 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public List<OwnerModel> findByFirstNameAndAgeNotZero(String firstName) {
-		return ownerDao.findByFirstNameAndAgeNotZero(firstName);
+	public List<OwnerModel> paging() {
+		return ownerDao.paging();
+	}
+	
+	@Override
+	public List<OwnerModel> sorting() {
+		return ownerDao.sorting();
 	}
 }

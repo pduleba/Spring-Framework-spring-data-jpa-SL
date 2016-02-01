@@ -18,5 +18,7 @@ public interface OwnerService {
 
 	long count();
 
-	List<OwnerModel> findByFirstNameAndAgeNotZero(String firstName);
+	List<OwnerModel> paging();
+	
+	List<OwnerModel> sorting();
 }
