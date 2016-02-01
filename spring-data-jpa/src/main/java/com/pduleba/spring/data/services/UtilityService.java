@@ -12,7 +12,8 @@ public interface UtilityService {
 		CREATE,
 		READ,
 		UPDATE,
-		DELETE
+		DELETE,
+		UPDATE_OR_COUNT
 	}
 	
 	public List<OwnerModel> getData();
@@ -24,6 +25,8 @@ public interface UtilityService {
 	void show(Collection<?> entities, Mode mode);
 
 	void show(Collection<?> entities);
+
+	void show(int updateOrCount);
 
 	CarModel getCar();
 }

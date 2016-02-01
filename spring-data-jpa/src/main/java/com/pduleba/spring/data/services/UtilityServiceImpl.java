@@ -69,6 +69,11 @@ class UtilityServiceImpl implements UtilityService, ApplicationPropertiesConfigu
 			}
 		}
 	}
+
+	@Override
+	public void show(int updateOrCount) {
+		LOG.info("{} :: {}", Mode.UPDATE_OR_COUNT, updateOrCount);
+	}
 	
 	@Override
 	public CarModel getCar() {
