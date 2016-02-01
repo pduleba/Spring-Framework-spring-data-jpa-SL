@@ -62,4 +62,9 @@ public class OwnerServiceImpl implements OwnerService {
 	public List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot) {
 		return ownerDao.findByFirstNameLastNameAndAgeOrderBased(first, lastLike, ageNot);
 	}
+	
+	@Override
+	public List<OwnerModel> findByFirstNameLastNameAndAgeNativeSQL(String first, String lastLike, Integer ageNot) {
+		return ownerDao.findByFirstNameLastNameAndAgeNativeSQL(first, lastLike, ageNot);
+	}
 }

@@ -28,6 +28,9 @@ public @Data class QueryControllerImpl implements QueryController {
 
 		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (order based parameters) ###########");
 		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeOrderBased("Jola", "J", Integer.valueOf(0)));
-}
+
+		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (order based parameters) ###########");
+		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeNativeSQL("Jola", "J", Integer.valueOf(0)));
+	}
 
 }

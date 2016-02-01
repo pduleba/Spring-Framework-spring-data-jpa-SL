@@ -23,4 +23,6 @@ public interface OwnerService {
 	List<OwnerModel> findByFirstNameLastNameAndAgeNameBased(String first, String lastLike, Integer ageNot);
 
 	List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot);
+
+	List<OwnerModel> findByFirstNameLastNameAndAgeNativeSQL(String first, String lastLike, Integer ageNot);
 }
