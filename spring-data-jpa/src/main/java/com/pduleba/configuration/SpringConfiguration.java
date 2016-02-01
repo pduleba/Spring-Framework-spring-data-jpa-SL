@@ -17,6 +17,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -36,11 +37,14 @@ import com.pduleba.spring.security.SecurityAuditorAware;
 
 @Configuration
 @ComponentScan(basePackageClasses=SpringMarker.class)
-@EnableJpaRepositories(basePackageClasses = SpringDataJpaMarker.class)
 @PropertySource("classpath:/config/application.properties")
 @EnableTransactionManagement
-@EnableJpaAuditing
+@EnableJpaRepositories(basePackageClasses = SpringDataJpaMarker.class)
+@EnableJpaAuditing(auditorAwareRef = SpringConfiguration.AUDITOR_AWARE_BEAN, dateTimeProviderRef = SpringConfiguration.DATE_TIME_PROVIDER_BEAN)
 public class SpringConfiguration implements ApplicationPropertiesConfiguration {
+	
+	protected static final String AUDITOR_AWARE_BEAN = "auditorAwareBean";
+	protected static final String DATE_TIME_PROVIDER_BEAN = "dateTimeProviderBean";
 	
 	@Autowired
 	private Environment env;
@@ -99,9 +103,15 @@ public class SpringConfiguration implements ApplicationPropertiesConfiguration {
 		return jpaTransactionManager;
 	}
 	
-	@Bean public AuditorAware<String> auditorProvider() {
+	@Bean(name = AUDITOR_AWARE_BEAN) 
+	public AuditorAware<String> auditorProvider() {
 		return new SecurityAuditorAware();
 	}
+	
+	@Bean(name = DATE_TIME_PROVIDER_BEAN)
+    DateTimeProvider dateTimeProvider() {
+        return new AuditingDateTimeProvider();
+    }
 	
 	private Properties getHibernateProperties() throws IOException {
 		Properties prop = new Properties();
