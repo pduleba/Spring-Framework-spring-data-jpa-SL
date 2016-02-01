@@ -3,7 +3,6 @@ package com.pduleba.spring.data.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort.Direction;
 
 import com.pduleba.jpa.model.OwnerModel;
 
@@ -22,9 +21,7 @@ public interface OwnerService {
 	long count();
 	
 	public Page<OwnerModel> findByActiveTrue(int page, int size);
-	
-	public Page<OwnerModel> findByActiveTrue(int page, int size, Direction direction, String sortFieldName);
 
-	public Iterable<OwnerModel> findByActiveTrue(Direction desc, String fieldFirstName);
+	String getCustomMethodResult();
 	
 }

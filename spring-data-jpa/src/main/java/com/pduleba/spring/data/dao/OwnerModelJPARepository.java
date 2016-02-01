@@ -11,7 +11,7 @@ import com.pduleba.jpa.model.OwnerModel;
 
 @Repository
 @Transactional
-public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
+public interface OwnerModelJPARepository extends JpaRepository<OwnerModel, Long>, CustomOwnerModelJPARepository {
 
 	OwnerModel getById(Long ownerId);
 

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.pduleba.jpa.model.OwnerModel;
-import com.pduleba.spring.data.services.CarService;
 import com.pduleba.spring.data.services.OwnerService;
 import com.pduleba.spring.data.services.UtilityService;
 import com.pduleba.spring.data.services.UtilityService.Mode;
@@ -21,8 +20,6 @@ public class DBControllerImpl implements DBController {
 	
 	@Autowired
 	private OwnerService ownerService;
-	@Autowired
-	private CarService carService;
 	@Autowired
 	private UtilityService utils;
 	
