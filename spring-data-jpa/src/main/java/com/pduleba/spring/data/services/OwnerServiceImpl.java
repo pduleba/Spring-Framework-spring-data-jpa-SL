@@ -104,4 +104,29 @@ public class OwnerServiceImpl implements OwnerService {
 	public List<OwnerModel> getByCarsNameIn(List<String> in) {
 		return ownerDao.getByCarsNameIn(in);
 	}
+	
+	@Override
+	public List<OwnerModel> getByFirstNameIgnoreCaseAndLastName(String firstNameIgnoreCase, String lastName) {
+		return ownerDao.getByFirstNameIgnoreCaseAndLastName(firstNameIgnoreCase, lastName);
+	}
+
+	@Override
+	public List<OwnerModel> getByActiveOrderByFirstNameDesc(Boolean active) {
+		return ownerDao.getByActiveOrderByFirstNameDesc(active);
+	}
+	
+	@Override
+	public List<OwnerModel> findFirstByActiveTrueOrderByFirstNameAsc() {
+		return ownerDao.findFirstByActiveTrueOrderByFirstNameAsc();
+	}
+	
+	@Override
+	public List<OwnerModel> findTop2ByActiveTrueOrderByFirstNameAsc() {
+		return ownerDao.findTop2ByActiveTrueOrderByFirstNameAsc();
+	}
+	
+	@Override
+	public List<OwnerModel> findDistinctByActiveTrueOrderByFirstNameAsc() {
+		return ownerDao.findDistinctByActiveTrueOrderByFirstNameAsc();
+	}
 }

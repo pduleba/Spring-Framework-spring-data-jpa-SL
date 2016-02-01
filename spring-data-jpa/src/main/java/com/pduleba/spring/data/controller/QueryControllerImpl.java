@@ -55,9 +55,23 @@ public @Data class QueryControllerImpl implements QueryController {
 		LOG.info("########### WHERE Age IN (?) AND Active NOT IN (?) ###########");
 		utils.show(ownerSerivce.getByAgeInAndActiveNotIn(Arrays.asList(81, 39), Arrays.asList(Boolean.TRUE)));
 		
-		LOG.info("########### ALIASING : WHERE cars.Name IN (?) ###########");
+		LOG.info("########### ALIASING : WHERE cars.Name IN (?) ###########"); //select o OwnersModel o JOIN o.cars c where c.name in (?)
 		utils.show(ownerSerivce.getByCarsNameIn(Arrays.asList("Audi-2-2")));
 		
+		LOG.info("########### WHERE UPPER(FirstName) = ? AND LastName = ? ###########");
+		utils.show(ownerSerivce.getByFirstNameIgnoreCaseAndLastName("JOLA", "J"));
+
+		LOG.info("########### WHERE FirstName ORDER BY DESC ###########");
+		utils.show(ownerSerivce.getByActiveOrderByFirstNameDesc(Boolean.TRUE));
+
+		LOG.info("########### WHERE Active = 'Y' ORDER BY FirstName ASC LIMIT 1 ###########");
+		utils.show(ownerSerivce.findFirstByActiveTrueOrderByFirstNameAsc());
+		
+		LOG.info("########### WHERE Active = 'Y' ORDER BY FirstName ASC LIMIT 2 ###########");
+		utils.show(ownerSerivce.findTop2ByActiveTrueOrderByFirstNameAsc());
+		
+		LOG.info("########### SELECT DISTINCT o FROM OwnerModel o WHERE Active = 'Y' ORDER BY FirstName ASC ###########");
+		utils.show(ownerSerivce.findDistinctByActiveTrueOrderByFirstNameAsc());
 	}
 
 }
