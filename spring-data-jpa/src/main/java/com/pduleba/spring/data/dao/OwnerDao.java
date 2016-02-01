@@ -3,6 +3,8 @@ package com.pduleba.spring.data.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,34 +22,13 @@ public interface OwnerDao extends JpaRepository<OwnerModel, Long> {
 
 	List<OwnerModel> getByFirstName(String firstName);
 
-	List<OwnerModel> getByFirstNameLikeOrLastNameLike(String firstName, String lastName);
+	@Query(value = "SELECT o FROM OwnerModel o WHERE o.firstName = :firstName AND o.lastName LIKE :lastName% AND o.age <> :age")
+	List<OwnerModel> findByFirstNameLastNameAndAgeNameBased(
+			@Param(value = "firstName") String first,
+			@Param(value = "lastName") String lastLike, 
+			@Param(value = "age") Integer ageNot);
 
-	List<OwnerModel> getByFirstNameIsAndLastNameEqualsAndAgeNot(String firstName, String lastName, Integer age);
 
-	List<OwnerModel> getByFirstNameNotLike(String firstName);
-
-	List<OwnerModel> getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(String firstNameStartingWith,
-			String firstNameEndingWith, String firstNameContaining);
-	
-	List<OwnerModel> getByAgeLessThanEqualAndAgeGreaterThan(int ageLessThanEqual, int ageGreaterThan);
-
-	List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l);
-	
-	List<OwnerModel> getByActiveTrue();
-	
-	List<OwnerModel> getByAgeIsNotNullOrActiveIsNull();
-	
-	List<OwnerModel> getByAgeInAndActiveNotIn(List<Integer> in, List<Boolean> notIn);
-	
-	List<OwnerModel> getByCarsNameIn(List<String> in);
-	
-	List<OwnerModel> getByFirstNameIgnoreCaseAndLastName(String firstNameIgnoreCase, String lastName);
-
-	List<OwnerModel> getByActiveOrderByFirstNameDesc(Boolean active);
-	
-	List<OwnerModel> findFirstByActiveTrueOrderByFirstNameAsc();
-	
-	List<OwnerModel> findTop2ByActiveTrueOrderByFirstNameAsc();
-
-	List<OwnerModel> findDistinctByActiveTrueOrderByFirstNameAsc();
+	@Query(value = "SELECT o FROM OwnerModel o WHERE o.firstName = ?1 AND o.lastName LIKE ?2% AND o.age <> ?3")
+	List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot);
 }

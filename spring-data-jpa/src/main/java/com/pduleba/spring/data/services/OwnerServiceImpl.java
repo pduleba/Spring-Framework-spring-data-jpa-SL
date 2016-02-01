@@ -54,79 +54,12 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 	
 	@Override
-	public List<OwnerModel> getByFirstNameLikeOrLastNameLike(String firstName, String lastName) {
-		return ownerDao.getByFirstNameLikeOrLastNameLike(firstName, lastName);
+	public List<OwnerModel> findByFirstNameLastNameAndAgeNameBased(String first, String lastLike, Integer ageNot) {
+		return ownerDao.findByFirstNameLastNameAndAgeNameBased(first, lastLike, ageNot);
 	}
 	
 	@Override
-	public List<OwnerModel> getByFirstNameIsAndLastNameEqualsAndAgeNot(String firstName, String lastName, Integer age) {
-		return ownerDao.getByFirstNameIsAndLastNameEqualsAndAgeNot(firstName, lastName, age);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameNotLike(String firstName) {
-		return ownerDao.getByFirstNameNotLike(firstName);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(
-			String firstNameStartingWith, String firstNameEndingWith, String firstNameContaining) {
-		return ownerDao.getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining(firstNameStartingWith,
-				firstNameEndingWith, firstNameContaining);
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeLessThanEqualAndAgeGreaterThan(int ageLessThanEqual, int ageGreaterThan) {
-		return ownerDao.getByAgeLessThanEqualAndAgeGreaterThan(ageLessThanEqual, ageGreaterThan);
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeBeforeAndAgeAfterAndAgeBetween(int i, int j, int k, int l) {
-		return ownerDao.getByAgeBeforeAndAgeAfterAndAgeBetween(i, j, k, l);
-	}
-	
-	@Override
-	public List<OwnerModel> getByActiveTrue() {
-		return ownerDao.getByActiveTrue();
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeIsNotNullOrActiveIsNull() {
-		return ownerDao.getByAgeIsNotNullOrActiveIsNull();
-	}
-	
-	@Override
-	public List<OwnerModel> getByAgeInAndActiveNotIn(List<Integer> in, List<Boolean> notIn) {
-		return ownerDao.getByAgeInAndActiveNotIn(in, notIn);
-	}
-	
-	@Override
-	public List<OwnerModel> getByCarsNameIn(List<String> in) {
-		return ownerDao.getByCarsNameIn(in);
-	}
-	
-	@Override
-	public List<OwnerModel> getByFirstNameIgnoreCaseAndLastName(String firstNameIgnoreCase, String lastName) {
-		return ownerDao.getByFirstNameIgnoreCaseAndLastName(firstNameIgnoreCase, lastName);
-	}
-
-	@Override
-	public List<OwnerModel> getByActiveOrderByFirstNameDesc(Boolean active) {
-		return ownerDao.getByActiveOrderByFirstNameDesc(active);
-	}
-	
-	@Override
-	public List<OwnerModel> findFirstByActiveTrueOrderByFirstNameAsc() {
-		return ownerDao.findFirstByActiveTrueOrderByFirstNameAsc();
-	}
-	
-	@Override
-	public List<OwnerModel> findTop2ByActiveTrueOrderByFirstNameAsc() {
-		return ownerDao.findTop2ByActiveTrueOrderByFirstNameAsc();
-	}
-	
-	@Override
-	public List<OwnerModel> findDistinctByActiveTrueOrderByFirstNameAsc() {
-		return ownerDao.findDistinctByActiveTrueOrderByFirstNameAsc();
+	public List<OwnerModel> findByFirstNameLastNameAndAgeOrderBased(String first, String lastLike, Integer ageNot) {
+		return ownerDao.findByFirstNameLastNameAndAgeOrderBased(first, lastLike, ageNot);
 	}
 }

@@ -1,7 +1,5 @@
 package com.pduleba.spring.data.controller;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,54 +22,12 @@ public @Data class QueryControllerImpl implements QueryController {
 
 	@Override
 	public void executeQueries() {
-		LOG.info("----------- Execute Query DSL -----------");
-		LOG.info("########### WHERE FirstName = ? ###########");
-		utils.show(ownerSerivce.getByFirstName("Darek"));
+		LOG.info("----------- Usage of @Query -----------");
+		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (name based parameters) ###########");
+		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeNameBased("Jola", "J", Integer.valueOf(0)));
 
-		LOG.info("########### WHERE FirstName LIKE ?% OR LastName LIKE %? ###########");
-		utils.show(ownerSerivce.getByFirstNameLikeOrLastNameLike("Darek%", "%J"));
-
-		LOG.info("########### WHERE FirstName = ? AND LastName = ? AND Age <> ? ###########");
-		utils.show(ownerSerivce.getByFirstNameIsAndLastNameEqualsAndAgeNot("Darek", "D", 0));
-
-		LOG.info("########### WHERE FirstName NOT LIKE %? ###########");
-		utils.show(ownerSerivce.getByFirstNameNotLike("%rek"));
-
-		LOG.info("########### WHERE FirstName LIKE %? OR FirstName LIKE ?% OR FirstName LIKE %?% ###########");
-		utils.show(ownerSerivce.getByFirstNameStartingWithOrFirstNameEndingWithOrFirstNameContaining("ek", "ek", "ek"));
-
-		LOG.info("########### WHERE Age > ? AND Age <= ? ###########");
-		utils.show(ownerSerivce.getByAgeLessThanEqualAndAgeGreaterThan(82, 80));
-
-		LOG.info("########### WHERE Age < ? AND Age > ? AND AGE BETWEEN ? AND ? ###########");
-		utils.show(ownerSerivce.getByAgeBeforeAndAgeAfterAndAgeBetween(82, 80, 80, 82));
-		
-		LOG.info("########### WHERE Active = True ###########");
-		utils.show(ownerSerivce.getByActiveTrue());
-		
-		LOG.info("########### WHERE Age IS NOT NULL OR Active IS NULL ###########");
-		utils.show(ownerSerivce.getByAgeIsNotNullOrActiveIsNull());
-		
-		LOG.info("########### WHERE Age IN (?) AND Active NOT IN (?) ###########");
-		utils.show(ownerSerivce.getByAgeInAndActiveNotIn(Arrays.asList(81, 39), Arrays.asList(Boolean.TRUE)));
-		
-		LOG.info("########### ALIASING : WHERE cars.Name IN (?) ###########"); //select o OwnersModel o JOIN o.cars c where c.name in (?)
-		utils.show(ownerSerivce.getByCarsNameIn(Arrays.asList("Audi-2-2")));
-		
-		LOG.info("########### WHERE UPPER(FirstName) = ? AND LastName = ? ###########");
-		utils.show(ownerSerivce.getByFirstNameIgnoreCaseAndLastName("JOLA", "J"));
-
-		LOG.info("########### WHERE FirstName ORDER BY DESC ###########");
-		utils.show(ownerSerivce.getByActiveOrderByFirstNameDesc(Boolean.TRUE));
-
-		LOG.info("########### WHERE Active = 'Y' ORDER BY FirstName ASC LIMIT 1 ###########");
-		utils.show(ownerSerivce.findFirstByActiveTrueOrderByFirstNameAsc());
-		
-		LOG.info("########### WHERE Active = 'Y' ORDER BY FirstName ASC LIMIT 2 ###########");
-		utils.show(ownerSerivce.findTop2ByActiveTrueOrderByFirstNameAsc());
-		
-		LOG.info("########### SELECT DISTINCT o FROM OwnerModel o WHERE Active = 'Y' ORDER BY FirstName ASC ###########");
-		utils.show(ownerSerivce.findDistinctByActiveTrueOrderByFirstNameAsc());
-	}
+		LOG.info("########### WHERE FirstName = ? AND LastName LIKE ? AND Age <> ? (order based parameters) ###########");
+		utils.show(ownerSerivce.findByFirstNameLastNameAndAgeOrderBased("Jola", "J", Integer.valueOf(0)));
+}
 
 }
