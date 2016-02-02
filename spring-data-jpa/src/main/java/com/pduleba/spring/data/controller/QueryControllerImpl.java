@@ -1,7 +1,5 @@
 package com.pduleba.spring.data.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +23,16 @@ public @Data class QueryControllerImpl implements QueryController {
 
 	@Override
 	public void executeQueries() {
-		LOG.info("----------- Execute Auditing -----------");
-		LOG.info("########### SELECT ###########");
-		List<OwnerModel> list = ownerSerivce.getByFirstName("Darek");
-		utils.show(list);
+		final String USER_NAME = "Darek";
 		
-		LOG.info("########### UPDATE - DOES NOT WORK - update query ###########");
-		utils.show(ownerSerivce.updateLastNameByFirstName("DD", "Darek"));		
+		LOG.info("----------- Execute Locking -----------");
+		OwnerModel entity = ownerSerivce.findFirstByFirstName(USER_NAME);
+		utils.show(entity);
 		
-		LOG.info("########### UPDATE - WORKS ###########");
-		OwnerModel entity = ownerSerivce.getById(list.get(0).getId());
+		LOG.info("########### UPDATE - by UPDATE SQL ###########");
+		utils.show(ownerSerivce.updateLastNameByFirstName("DD", USER_NAME));		
+		
+		LOG.info("########### UPDATE - by Repository ###########");
 		entity.setLastName("DDD");
 		ownerSerivce.create(entity);
 		

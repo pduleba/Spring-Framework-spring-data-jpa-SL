@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pduleba.jpa.model.OwnerModel;
 import com.pduleba.spring.data.dao.OwnerDao;
 
 @Service
+@Transactional
 public class OwnerServiceImpl implements OwnerService {
 
 	@Autowired
@@ -49,8 +51,8 @@ public class OwnerServiceImpl implements OwnerService {
 	// ------------------------------------------------
 
 	@Override
-	public List<OwnerModel> getByFirstName(String firstName) {
-		return ownerDao.getByFirstName(firstName);
+	public OwnerModel findFirstByFirstName(String firstName) {
+		return ownerDao.findFirstByFirstName(firstName);
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
@@ -87,6 +88,10 @@ public @Data class OwnerModel {
 	
 	@Column(name = "AGE")
 	private Integer age;
+	
+	@Version
+	@Column(name = "OPLOCK_VERSION")
+	private Integer version;
 	
 	@Column(name = "ACTIVE")
 	@Type(type="yes_no")

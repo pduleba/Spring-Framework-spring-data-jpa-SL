@@ -18,7 +18,7 @@ public interface OwnerService {
 
 	long count();
 
-	List<OwnerModel> getByFirstName(String carName);
+	OwnerModel findFirstByFirstName(String carName);
 
 	int updateLastNameByFirstName(String lastName, String firstName);
 
